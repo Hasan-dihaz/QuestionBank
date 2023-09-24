@@ -14,12 +14,13 @@ import {
 } from "../../../node_modules/@mui/material/index";
 import { Controller, useForm } from "react-hook-form";
 
-const CreateMCQ = ({ setQuestion, editData }: any) => {
-  const [questionText, setQuestionText]: any = useState(null);
-  const [option1, setOption1]: any = useState(null);
-  const [option2, setOption2]: any = useState(null);
-  const [option3, setOption3]: any = useState(null);
-  const [option4, setOption4]: any = useState(null);
+const CreateCQ = ({ setQuestion, editData }: any) => {
+  const [questionContext, setQuestionContext]: any = useState(null);
+  const [question1, setQuestion1]: any = useState(null);
+  const [question2, setQuestion2]: any = useState(null);
+  const [question3, setQuestion3]: any = useState(null);
+  const [question4, setQuestion4]: any = useState(null);
+  const [isWaitting, setisWaitting]: any = useState(true);
 
   const {
     register,
@@ -32,23 +33,24 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
 
   console.log("editData", editData);
   useEffect(() => {
-    console.log("editIf0");
     if (editData) {
-      console.log("editIf1");
-      setValue("question", editData.question);
-      setValue("1", editData[1]);
-      setValue("2", editData[2]);
-      setValue("3", editData[3]);
-      setValue("4", editData[4]);
-      setQuestionText(editData.question);
-      setOption1(editData[1]);
-      setOption2(editData[2]);
-      setOption3(editData[3]);
-      setOption4(editData[4]);
+      setValue("context", editData.context);
+      setValue("q1", editData.q1);
+      setValue("q2", editData.q2);
+      setValue("q3", editData.q3);
+      setValue("q4", editData.q4);
+      setQuestionContext(editData.context);
+      setQuestion1(editData.q1);
+      setQuestion2(editData.q2);
+      setQuestion3(editData.q3);
+      setQuestion4(editData.q4);
+      setisWaitting(false);
     }
   }, [editData, setValue]);
 
-  console.log("questionText", questionText);
+  useEffect(() => {
+    setisWaitting(false);
+  }, []);
 
   const formSubmiteHandler = (data: any) => {
     if (typeof editData?.editItemIndex !== "undefined") {
@@ -56,84 +58,85 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
         console.log("index1", editData?.editItemIndex);
 
         const updatedArray = [...prev]; // Create a copy of the previous state array
-        updatedArray[editData.editItemIndex] = data; // Update the specific index with the new value
+        updatedArray[editData.editItemIndex] = data;
         editData?.setEditData(null);
+        setisWaitting(false);
         return updatedArray; // Return the updated array
       });
+      console.log("question1", question1, typeof question1);
     } else {
       console.log("index2", editData?.editItemIndex);
 
       setQuestion((prev: any) => [...prev, data]);
+      console.log("question1", question1, typeof question1);
     }
 
-    // setValue("question", "");
-    // setValue("1", "");
-    // setValue("2", "");
-    // setValue("3", "");
-    // setValue("4", "");
-    // setQuestionText(null);
-    // setOption1(null);
-    // setOption2(null);
-    // setOption3(null);
-    // setOption4(null);
+    setValue("context", "");
+    setValue("q1", "");
+    setValue("q2", "");
+    setValue("q3", "");
+    setValue("q4", "");
+    setQuestionContext(null);
+    setQuestion1(null);
+    setQuestion2(null);
+    setQuestion3(null);
+    setQuestion4(null);
 
     console.log("formData", data);
   };
 
-  return (
+  return !isWaitting ? (
     <div className=" p-4 border-2">
       <form onSubmit={handleSubmit(formSubmiteHandler)}>
         <div className="flex flex-col gap-2 ">
           <TextField
-            {...register("question")}
+            {...register("context")}
             className=""
-            defaultValue={questionText !== "" ? questionText : ""}
-            label="Question"
+            // multiline
+            // rows={3}
+            value={questionContext}
+            label="Context"
             variant="outlined"
           />
-          {/* <Checkbox />{" "} */}
+          {/*{" "} */}
           <ol className="flex flex-col gap-2">
             <li>
-              <Checkbox />
               <TextField
                 // onChange={}
-                {...register("1")}
+                {...register("q1")}
                 className="!w-1/2"
-                defaultValue={option1}
-                label="Option1"
+                value={question1}
+                label="Question1"
                 variant="outlined"
               />
             </li>
             <li>
-              <Checkbox />
               <TextField
                 // onChange={}
-                {...register("2")}
+                {...register("q2")}
                 className="!w-1/2"
-                defaultValue={option2}
-                label="Option2"
+                value={question2}
+                label="Question2"
                 variant="outlined"
               />
             </li>
             <li>
-              <Checkbox />
               <TextField
                 // onChange={}
-                {...register("3")}
+                {...register("q3")}
                 className="!w-1/2"
-                defaultValue={option3}
-                label="Option3"
+                value={question3}
+                label="Question3"
                 variant="outlined"
               />
             </li>
             <li>
-              <Checkbox />
               <TextField
                 // onChange={}
-                {...register("4")}
+                {...register("q4")}
                 className="!w-1/2"
-                defaultValue={option4}
-                label="Option4"
+                value={question4}
+                label="Question4"
                 variant="outlined"
               />
             </li>
@@ -149,7 +152,9 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
         </Button>
       </form>
     </div>
+  ) : (
+    <div></div>
   );
 };
 
-export default CreateMCQ;
+export default CreateCQ;
