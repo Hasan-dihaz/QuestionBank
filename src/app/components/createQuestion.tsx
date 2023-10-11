@@ -36,11 +36,13 @@ const CreateQuestion = () => {
 
   const handleEdit = (editItemIndex: any) => {
     if (questionType === "mcq") {
-      setEditData({
+      const editableQuestion: any = {
         ...question.find((item: any, index: any) => index === editItemIndex),
         editItemIndex: editItemIndex,
         setEditData: setEditData,
-      });
+      };
+
+      setEditData(editableQuestion);
     } else if (questionType === "cq") {
       setEditData({
         ...questionCQ.find((item: any, index: any) => index === editItemIndex),
@@ -82,12 +84,12 @@ const CreateQuestion = () => {
                         <Box>{item.question}</Box>
                       </li>
                       <li className="flex gap-5">
-                        <Box>{item[1]}</Box>
-                        <Box>{item[2]}</Box>
+                        <Box>{item.option1}</Box>
+                        <Box>{item.option2}</Box>
                       </li>
                       <li className="flex gap-5">
-                        <Box>{item[3]}</Box>
-                        <Box>{item[4]}</Box>
+                        <Box>{item.option3}</Box>
+                        <Box>{item.option4}</Box>
                       </li>
                     </ol>
                   </div>

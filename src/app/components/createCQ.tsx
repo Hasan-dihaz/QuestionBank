@@ -15,11 +15,11 @@ import {
 import { Controller, useForm } from "react-hook-form";
 
 const CreateCQ = ({ setQuestion, editData }: any) => {
-  const [questionContext, setQuestionContext]: any = useState(null);
-  const [question1, setQuestion1]: any = useState(null);
-  const [question2, setQuestion2]: any = useState(null);
-  const [question3, setQuestion3]: any = useState(null);
-  const [question4, setQuestion4]: any = useState(null);
+  const [questionContext, setQuestionContext]: any = useState("");
+  const [question1, setQuestion1]: any = useState("");
+  const [question2, setQuestion2]: any = useState("");
+  const [question3, setQuestion3]: any = useState("");
+  const [question4, setQuestion4]: any = useState("");
   const [isWaitting, setisWaitting]: any = useState(true);
 
   const {
@@ -59,7 +59,7 @@ const CreateCQ = ({ setQuestion, editData }: any) => {
 
         const updatedArray = [...prev]; // Create a copy of the previous state array
         updatedArray[editData.editItemIndex] = data;
-        editData?.setEditData(null);
+        editData?.setEditData("");
         setisWaitting(false);
         return updatedArray; // Return the updated array
       });
@@ -76,11 +76,11 @@ const CreateCQ = ({ setQuestion, editData }: any) => {
     setValue("q2", "");
     setValue("q3", "");
     setValue("q4", "");
-    setQuestionContext(null);
-    setQuestion1(null);
-    setQuestion2(null);
-    setQuestion3(null);
-    setQuestion4(null);
+    setQuestionContext("");
+    setQuestion1("");
+    setQuestion2("");
+    setQuestion3("");
+    setQuestion4("");
 
     console.log("formData", data);
   };
