@@ -103,10 +103,10 @@ const CreateQuestion = () => {
                         </Box>
                       </li>
                       <li className="flex flex-col gap-2">
-                        <Box>1) {item.q1}</Box>
-                        <Box>2) {item.q2}</Box>
-                        <Box>3) {item.q3}</Box>
-                        <Box>4) {item.q4}</Box>
+                        <Box>1) {item.question1}</Box>
+                        <Box>2) {item.question2}</Box>
+                        <Box>3) {item.question3}</Box>
+                        <Box>4) {item.question4}</Box>
                       </li>
                     </ol>
                   </div>
