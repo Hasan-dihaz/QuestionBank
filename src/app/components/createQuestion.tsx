@@ -10,6 +10,7 @@ import {
 import CreateMCQ from "./createMCQ";
 import CreateCQ from "./createCQ";
 import PDFFile from "./pdfCreator";
+import PDF from "./pdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const CreateQuestion = () => {
@@ -56,7 +57,11 @@ const CreateQuestion = () => {
     <div className="flex flex-col">
       <div className=" px-10 w-full flex justify-between">
         <Typography>Create Question</Typography>
-        {/* <PDFDownloadLink document={<PDFFile />} fileName="FORM">
+        <PDFDownloadLink
+          // document={<PDFFile question={question} />}
+          document={<PDF />}
+          fileName="FORM"
+        >
           {({ loading }) =>
             loading ? (
               <button>Loading Document...</button>
@@ -64,7 +69,7 @@ const CreateQuestion = () => {
               <button>Download</button>
             )
           }
-        </PDFDownloadLink> */}
+        </PDFDownloadLink>
 
         <div>
           <Button onClick={() => setQuestionType("mcq")}>MCQ</Button>
