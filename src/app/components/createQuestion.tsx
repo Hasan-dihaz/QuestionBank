@@ -4,14 +4,60 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  Modal,
+  Popover,
   TextField,
   Typography,
-} from "../../../node_modules/@mui/material/index";
+} from "@mui/material";
 import CreateMCQ from "./createMCQ";
 import CreateCQ from "./createCQ";
 import PDFFile from "./pdfCreator";
 import PDF from "./pdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import QuestionMetaData from "./Subjects/subAndChap";
+import ClientsRegistration from "./Clients/clients";
+
+//!============================
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 600,
+  bgcolor: "background.paper",
+  // border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+export function BasicModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Client Details
+          </Typography>
+          <Box>
+            <ClientsRegistration />
+          </Box>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+//!============================
 
 const CreateQuestion = () => {
   const [question, setQuestion]: any = useState([]);
@@ -76,6 +122,9 @@ const CreateQuestion = () => {
           <Button onClick={() => setQuestionType("cq")}>CQ</Button>
         </div>
       </div>
+      <div>
+        <BasicModal />
+      </div>
       <div className="w-full flex flex-row ">
         <div className=" w-1/2 h-screen overflow-auto flex flex-col gap-5">
           {(questionType === "mcq" ? question : questionCQ)?.map(
@@ -127,6 +176,9 @@ const CreateQuestion = () => {
           )}
         </div>
         <div className="w-1/2">
+          <div>
+            <QuestionMetaData />
+          </div>
           {questionType === "mcq" ? (
             <CreateMCQ setQuestion={setQuestion} editData={editData} />
           ) : (

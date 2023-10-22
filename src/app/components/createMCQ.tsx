@@ -11,7 +11,7 @@ import {
   RadioGroup,
   TextField,
   Typography,
-} from "../../../node_modules/@mui/material/index";
+} from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 
 const CreateMCQ = ({ setQuestion, editData }: any) => {
