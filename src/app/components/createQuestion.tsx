@@ -16,6 +16,7 @@ import PDF from "./pdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import QuestionMetaData from "./Subjects/subAndChap";
 import ClientsRegistration from "./Clients/clients";
+import Navbar from "./NavBar/navBar";
 
 //!============================
 
@@ -29,6 +30,7 @@ const style = {
   // border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  pt: 0,
 };
 
 export function BasicModal() {
@@ -42,13 +44,21 @@ export function BasicModal() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+
+        // aria-labelledby="modal-modal-title"
+        // aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Client Details
-          </Typography>
+        <Box sx={style} className=" !rounded-xl">
+          <Box className=" !py-3">
+            <Typography
+              className=" !text-xl !font-light"
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+            >
+              Client Details
+            </Typography>
+          </Box>
           <Box>
             <ClientsRegistration />
           </Box>
@@ -101,6 +111,7 @@ const CreateQuestion = () => {
 
   return (
     <div className="flex flex-col">
+      <Navbar />
       <div className=" px-10 w-full flex justify-between">
         <Typography>Create Question</Typography>
         <PDFDownloadLink

@@ -21,6 +21,14 @@ const ClientsRegistration = () => {
         )}
       />
       <Controller
+        name="Coaching"
+        control={control}
+        defaultValue="" // Set the default value if needed
+        render={({ field }) => (
+          <TextField {...field} label="Coaching" variant="outlined" />
+        )}
+      />
+      <Controller
         name="Mobile"
         control={control}
         defaultValue="" // Set the default value if needed
@@ -29,11 +37,11 @@ const ClientsRegistration = () => {
         )}
       />
       <Controller
-        name="Coaching"
+        name="gender"
         control={control}
         defaultValue="" // Set the default value if needed
         render={({ field }) => (
-          <TextField {...field} label="Coaching" variant="outlined" />
+          <TextField {...field} label="Gender" variant="outlined" />
         )}
       />
       <Controller
@@ -60,14 +68,7 @@ const ClientsRegistration = () => {
           <TextField {...field} label="Village" variant="outlined" />
         )}
       />
-      <Controller
-        name="gender"
-        control={control}
-        defaultValue="" // Set the default value if needed
-        render={({ field }) => (
-          <TextField {...field} label="Gender" variant="outlined" />
-        )}
-      />
+
       <Controller
         name="fb"
         control={control}
