@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollbar-custom-width::-webkit-scrollbar {
+  width: 0px; /* Width of the scrollbar */
+}

@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
-import { Class, SUBJECT } from "../../../../demoData/demoData";
+import { Class, SUBJECT } from "../../demoData/demoData";
 
 const QuestionMetaData = () => {
   return (

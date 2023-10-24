@@ -1,6 +1,6 @@
 import Image from "next/image";
-import CreateQuestion from "./components/createQuestion";
+import Layout from "../../components/Layout/layout";
 
 export default function Home() {
-  return <CreateQuestion />;
+  return <Layout />;
 }

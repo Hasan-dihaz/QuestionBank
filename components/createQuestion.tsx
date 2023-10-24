@@ -16,7 +16,7 @@ import PDF from "./pdf";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import QuestionMetaData from "./Subjects/subAndChap";
 import ClientsRegistration from "./Clients/clients";
-import Navbar from "./NavBar/navBar";
+import Layout from "./Layout/layout";
 
 //!============================
 
@@ -111,7 +111,6 @@ const CreateQuestion = () => {
 
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className=" px-10 w-full flex justify-between">
         <Typography>Create Question</Typography>
         <PDFDownloadLink
@@ -133,9 +132,7 @@ const CreateQuestion = () => {
           <Button onClick={() => setQuestionType("cq")}>CQ</Button>
         </div>
       </div>
-      <div>
-        <BasicModal />
-      </div>
+
       <div className="w-full flex flex-row ">
         <div className=" w-1/2 h-screen overflow-auto flex flex-col gap-5">
           {(questionType === "mcq" ? question : questionCQ)?.map(
