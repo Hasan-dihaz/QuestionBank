@@ -37,6 +37,8 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
       setValue("option2", editData.option2);
       setValue("option3", editData.option3);
       setValue("option4", editData.option4);
+      setValue("checkBox1", false);
+
       // setValue("checkBox1", editData.checkBox1);
       // setValue("checkBox2", editData.checkBox2);
       // setValue("checkBox3", editData.checkBox3);
@@ -95,13 +97,12 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               <Controller
                 name="checkBox1"
                 control={control}
-                defaultValue={editData?.checkBox1} // Set the default value if needed
-                render={({ field }) => (
-                  <Checkbox
-                    {...field}
-                    checked={field.value} // Set checked prop based on the field's value
-                  />
-                )}
+                // defaultValue={editData?.checkBox1} // Set the default value if needed
+                defaultValue={true}
+                render={({ field }) => {
+                  console.log("field.value", field.value);
+                  return <Checkbox {...field} defaultChecked={field.value} />;
+                }}
               />
               <Controller
                 name="option1"
@@ -121,9 +122,12 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               <Controller
                 name="checkBox2"
                 control={control}
-                // defaultValue="" // Set the default value if needed
-                render={({ field }) => <Checkbox {...field} />}
+                // defaultValue={true}
+                render={({ field: { onChange, value } }) => (
+                  <Checkbox checked={value} onChange={onChange} />
+                )}
               />
+
               <Controller
                 name="option2"
                 control={control}
@@ -143,7 +147,10 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
                 name="checkBox3"
                 control={control}
                 // defaultValue="" // Set the default value if needed
-                render={({ field }) => <Checkbox {...field} />}
+                defaultValue={false}
+                render={({ field: { onChange, value } }) => (
+                  <Checkbox checked={value} onChange={onChange} />
+                )}
               />
               <Controller
                 name="option3"

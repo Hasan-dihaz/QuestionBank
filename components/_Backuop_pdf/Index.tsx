@@ -12,7 +12,7 @@ import {
 import Header from "./Header";
 import Skills from "./Skills";
 import Education from "./Education";
-import McqQuestion from "./McqQuestion";
+import Experience from "./Experience";
 
 const styles = StyleSheet.create({
   page: {
@@ -21,26 +21,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    // "@media max-width: 400": {
-    //   flexDirection: "column",
-    // },
+    "@media max-width: 400": {
+      flexDirection: "column",
+    },
   },
   image: {
     marginBottom: 10,
   },
   leftColumn: {
-    // flexDirection: "column",
-    width: 1000,
+    flexDirection: "column",
+    width: 170,
     paddingTop: 30,
     paddingRight: 15,
-    // "@media max-width: 400": {
-    //   width: "100%",
-    //   paddingRight: 0,
-    // },
-    // "@media orientation: landscape": {
-    //   width: 200,
-    // },
+    "@media max-width: 400": {
+      width: "100%",
+      paddingRight: 0,
+    },
+    "@media orientation: landscape": {
+      width: 200,
+    },
   },
   footer: {
     fontSize: 12,
@@ -77,23 +76,23 @@ Font.register({
   src: `https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPHA.ttf`,
 });
 
-const Resume = (props: any) => {
-  const headerContent = { school: "School Name", exam: "Exam Name" };
-
-  return (
-    <Page {...props} style={styles.page}>
-      <Header headerContent={headerContent} />
-      <View style={styles.container}>
-        <View style={styles.leftColumn}>
-          <McqQuestion />
-        </View>
+const Resume = (props: any) => (
+  <Page {...props} style={styles.page}>
+    <Header />
+    <View style={styles.container}>
+      <View style={styles.leftColumn}>
+        <Image
+          src="https://react-pdf.org/static/images/luke.jpg"
+          style={styles.image}
+        />
+        <Education />
+        <Skills />
       </View>
-      <Text style={styles.footer}>
-        This IS the candidate you are looking for
-      </Text>
-    </Page>
-  );
-};
+      <Experience />
+    </View>
+    <Text style={styles.footer}>This IS the candidate you are looking for</Text>
+  </Page>
+);
 
 const Index = () => (
   <Document

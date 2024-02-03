@@ -3,10 +3,8 @@ import { Text, View, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   item: {
-    // width: 600,
     flexDirection: "row",
     marginBottom: 5,
-    marginRight: 5,
   },
   bulletPoint: {
     width: 10,
@@ -17,21 +15,14 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: "Lato",
   },
-  list: {
-    // width: "80%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    flexWrap: "wrap",
-  },
 });
 
-const List = ({ children }: any) => <View style={styles.list}>{children}</View>;
+const List = ({ children }: any) => children;
 
 export const Item = ({ children }: any) => (
   <View style={styles.item}>
-    {/* <Text style={styles.bulletPoint}>•</Text> */}
-    {/* <Text style={styles.itemContent}>{children}</Text> */}
-    {children}
+    <Text style={styles.bulletPoint}>•</Text>
+    <Text style={styles.itemContent}>{children}</Text>
   </View>
 );
 

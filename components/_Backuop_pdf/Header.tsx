@@ -41,20 +41,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = ({ headerContent }: any) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.detailColumn}>
-        <Text style={styles.name}>{headerContent.school}</Text>
-        <Text style={styles.subtitle}>{headerContent.exam}</Text>
-      </View>
-      {/* <View style={styles.linkColumn}>
+const Header = () => (
+  <View style={styles.container}>
+    <View style={styles.detailColumn}>
+      <Text style={styles.name}>Ideal School And College</Text>
+      <Text style={styles.subtitle}>Final Exam</Text>
+    </View>
+    {/* <View style={styles.linkColumn}>
       <Link src="mailto:luke@theforce.com" style={styles.link}>
         luke@theforce.com
       </Link>
     </View> */}
-    </View>
-  );
-};
+  </View>
+);
 
 export default Header;
