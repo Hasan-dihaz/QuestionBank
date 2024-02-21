@@ -2,12 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
-  item: {
-    // width: 600,
-    flexDirection: "row",
-    marginBottom: 5,
-    marginRight: 5,
-  },
   bulletPoint: {
     width: 10,
     fontSize: 10,
@@ -18,10 +12,15 @@ const styles = StyleSheet.create({
     fontFamily: "Lato",
   },
   list: {
-    // width: "80%",
+    // flex: 1, // Occupies equal space in the container
+    width: 600, // 50% width of the container
     flexDirection: "row",
-    justifyContent: "space-around",
+    rowGap: 10,
+    justifyContent: "space-between",
     flexWrap: "wrap",
+  },
+  item: {
+    flexBasis: "40%",
   },
 });
 

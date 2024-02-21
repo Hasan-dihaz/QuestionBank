@@ -84,9 +84,9 @@ const Resume = (props: any) => {
     <Page {...props} style={styles.page}>
       <Header headerContent={headerContent} />
       <View style={styles.container}>
-        <View style={styles.leftColumn}>
-          <McqQuestion />
-        </View>
+        {/* <View style={styles.leftColumn}> */}
+        <McqQuestion />
+        {/* </View> */}
       </View>
       <Text style={styles.footer}>
         This IS the candidate you are looking for
