@@ -16,7 +16,13 @@ import { Controller, useForm } from "react-hook-form";
 
 const CreateMCQ = ({ setQuestion, editData }: any) => {
   const [questionText, setQuestionText]: any = useState("");
-  console.log("editData", editData);
+  const [isChecked, setIsChecked]: any = useState([]);
+  console.log(
+    "iseditData",
+    editData,
+    editData?.isChecked,
+    editData?.isChecked?.length
+  );
 
   const {
     register,
@@ -31,13 +37,16 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
   useEffect(() => {
     console.log("editIf0");
     if (editData) {
+      setIsChecked(editData?.isChecked?.length > 0 ? editData?.isChecked : []);
       console.log("editIf1", editData[1], editData[2]);
       setValue("question", editData.question);
       setValue("option1", editData.option1);
       setValue("option2", editData.option2);
       setValue("option3", editData.option3);
       setValue("option4", editData.option4);
-      setValue("checkBox1", false);
+      // setValue("checkBox1", editData.checkBox1);
+
+      // setIsChecked(editData.checkBox1);
 
       // setValue("checkBox1", editData.checkBox1);
       // setValue("checkBox2", editData.checkBox2);
@@ -52,24 +61,29 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
     if (typeof editData?.editItemIndex !== "undefined") {
       setQuestion((prev: any) => {
         console.log("index1", editData?.editItemIndex);
-        console.log("data", data);
+        console.log("data", { ...data, isChecked });
+        data = { ...data, isChecked };
 
         const updatedArray = [...prev]; // Create a copy of the previous state array
         updatedArray[editData.editItemIndex] = data; // Update the specific index with the new value
         editData?.setEditData("");
         return updatedArray; // Return the updated array
       });
+      setIsChecked([]);
     } else {
       console.log("index2", editData?.editItemIndex);
-
+      data = { ...data, isChecked };
       setQuestion((prev: any) => [...prev, data]);
+      setIsChecked([]);
     }
 
-    // setValue("question", "");
-    // setValue("1", "");
-    // setValue("2", "");
-    // setValue("3", "");
-    // setValue("4", "");
+    setValue("question", "");
+    setValue("option1", "");
+    setValue("option2", "");
+    setValue("option3", "");
+    setValue("option4", "");
+
+    // setValue("checkBox1", "");
     // setQuestionText(null);
     // setOption1(null);
     // setOption2(null);
@@ -78,6 +92,19 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
 
     console.log("formData", data);
   };
+
+  // State to manage the condition for checkbox
+
+  // Function to handle checkbox change
+  const handleCheckBox = (value: any) => {
+    setIsChecked((prevValues: any) =>
+      prevValues.includes(value)
+        ? prevValues.filter((item: any) => item !== value)
+        : [...prevValues, value]
+    );
+  };
+
+  console.log("is", isChecked);
 
   return (
     <div className=" p-4 border-2">
@@ -94,16 +121,21 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
           />
           <ol className="flex flex-col gap-2">
             <li>
-              <Controller
+              {/* <Controller
                 name="checkBox1"
                 control={control}
-                // defaultValue={editData?.checkBox1} // Set the default value if needed
-                defaultValue={true}
+                // value={editData?.checkBox1} // Set the default value if needed
+                // defaultValue={true}
                 render={({ field }) => {
-                  console.log("field.value", field.value);
-                  return <Checkbox {...field} defaultChecked={field.value} />;
+                  console.log("field.value", field);
+                  return <Checkbox {...field} checked={isChecked} />;
                 }}
+              /> */}
+              <Checkbox
+                checked={isChecked?.includes(0)}
+                onChange={() => handleCheckBox(0)}
               />
+
               <Controller
                 name="option1"
                 control={control}
@@ -119,13 +151,18 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               />
             </li>
             <li>
-              <Controller
+              {/* <Controller
                 name="checkBox2"
                 control={control}
                 // defaultValue={true}
                 render={({ field: { onChange, value } }) => (
                   <Checkbox checked={value} onChange={onChange} />
                 )}
+              /> */}
+
+              <Checkbox
+                checked={isChecked?.includes(1)}
+                onChange={() => handleCheckBox(1)}
               />
 
               <Controller
@@ -143,7 +180,7 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               />
             </li>
             <li>
-              <Controller
+              {/* <Controller
                 name="checkBox3"
                 control={control}
                 // defaultValue="" // Set the default value if needed
@@ -151,6 +188,10 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
                 render={({ field: { onChange, value } }) => (
                   <Checkbox checked={value} onChange={onChange} />
                 )}
+              /> */}
+              <Checkbox
+                checked={isChecked?.includes(2)}
+                onChange={() => handleCheckBox(2)}
               />
               <Controller
                 name="option3"
@@ -167,11 +208,15 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               />
             </li>
             <li>
-              <Controller
+              {/* <Controller
                 name="checkBox4"
                 control={control}
                 // defaultValue="" // Set the default value if needed
                 render={({ field }) => <Checkbox {...field} />}
+              /> */}
+              <Checkbox
+                checked={isChecked?.includes(3)}
+                onChange={() => handleCheckBox(3)}
               />
               <Controller
                 name="option4"
@@ -188,62 +233,6 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
               />
             </li>
           </ol>
-          {/* //! ~~~~~~~~~~~~~~~~~~~~~~~ */}
-          {/* <Checkbox />{" "} */}
-          {/* <ol className="flex flex-col gap-2">
-            <li>
-              <Checkbox />
-              <TextField
-                // onChange={}
-                {...register("1")}
-                className="!w-1/2"
-                // defaultValue={option1}
-                // value={option1}
-                onChange={(e: any) => setOption1(e.target.value)}
-                label="Option1"
-                variant="outlined"
-              />
-            </li>
-            <li>
-              <Checkbox />
-              <TextField
-                // onChange={}
-                {...register("2")}
-                className="!w-1/2"
-                // value={option2}
-                // defaultValue={option2}
-                onChange={(e: any) => setOption2(e.target.value)}
-                label="Option2"
-                variant="outlined"
-              />
-            </li>
-            <li>
-              <Checkbox />
-              <TextField
-                // onChange={}
-                {...register("3")}
-                className="!w-1/2"
-                // defaultValue={option3}
-                // value={option3}
-                onChange={(e: any) => setOption3(e.target.value)}
-                label="Option3"
-                variant="outlined"
-              />
-            </li>
-            <li>
-              <Checkbox />
-              <TextField
-                // onChange={}
-                {...register("4")}
-                className="!w-1/2"
-                // defaultValue={option4}
-                // value={option4}
-                onChange={(e: any) => setOption4(e.target.value)}
-                label="Option4"
-                variant="outlined"
-              />
-            </li>
-          </ol> */}
         </div>
         <Button
           sx={{ mt: 1, mr: 1, width: 30 }}
