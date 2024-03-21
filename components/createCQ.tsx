@@ -63,6 +63,12 @@ const CreateCQ = ({ setQuestion, editData }: any) => {
       setQuestion((prev: any) => [...prev, data]);
     }
 
+    setValue("context", "");
+    setValue("question1", "");
+    setValue("question2", "");
+    setValue("question3", "");
+    setValue("question4", "");
+
     console.log("formData", data);
   };
 

@@ -146,7 +146,7 @@ const CreateQuestion = () => {
               <>
                 <div
                   key={index}
-                  className=" flex items-start justify-between pr-10"
+                  className=" flex items-start justify-between pr-10 "
                 >
                   {questionType === "mcq" ? (
                     <div id="mcq" className="">
@@ -156,13 +156,15 @@ const CreateQuestion = () => {
                           <li>
                             <Box>{item.question}</Box>
                           </li>
-                          <li className="flex gap-5">
-                            <Box>a. {item.option1}</Box>
-                            <Box>b. {item.option2}</Box>
-                          </li>
-                          <li className="flex gap-5">
-                            <Box>c. {item.option3}</Box>
-                            <Box>d. {item.option4}</Box>
+                          <li className=" flex gap-5">
+                            <li className="flex flex-col gap-2">
+                              <Box>a. {item.option1}</Box>
+                              <Box>c. {item.option3}</Box>
+                            </li>
+                            <li className="flex flex-col gap-2">
+                              <Box>b. {item.option2}</Box>
+                              <Box>d. {item.option4}</Box>
+                            </li>
                           </li>
                         </ol>
                       </div>
@@ -183,11 +185,11 @@ const CreateQuestion = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex gap-1 border-r-2">
+                    <div className="flex gap-1">
                       <span>{index + 1}.</span>&nbsp;&nbsp;
                       <ol className="flex flex-col gap-1">
                         <li>
-                          <Box className="mb-2">
+                          <Box className="mb-2 text-justify">
                             <p>{item.context}</p>
                           </Box>
                         </li>
@@ -200,7 +202,7 @@ const CreateQuestion = () => {
                       </ol>
                     </div>
                   )}
-                  <div className="h-fit flex gap-1 border-l-2">
+                  <div className="h-fit flex gap-1 border-l-2 ml-2">
                     {/* <Button onClick={() => handleEdit(index)} className=""> */}
                     {/* Edit */}
                     <IconButton onClick={() => handleEdit(index)} size="medium">
