@@ -36,6 +36,7 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
   // console.log("editData", editData);
   useEffect(() => {
     console.log("editIf0");
+    console.log("formState", errors);
     if (editData) {
       setIsChecked(editData?.isChecked?.length > 0 ? editData?.isChecked : []);
       console.log("editIf1", editData[1], editData[2]);
@@ -82,13 +83,6 @@ const CreateMCQ = ({ setQuestion, editData }: any) => {
     setValue("option2", "");
     setValue("option3", "");
     setValue("option4", "");
-
-    // setValue("checkBox1", "");
-    // setQuestionText(null);
-    // setOption1(null);
-    // setOption2(null);
-    // setOption3(null);
-    // setOption4(null);
 
     console.log("formData", data);
   };

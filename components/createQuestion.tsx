@@ -13,7 +13,7 @@ import CreateMCQ from "./createMCQ";
 import CreateCQ from "./createCQ";
 import PDFFile from "./pdfCreator";
 import PDF from "./pdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import QuestionMetaData from "./Subjects/subAndChap";
 import ClientsRegistration from "./Clients/clients";
 import Layout from "./Layout/layout";
@@ -63,9 +63,12 @@ export function BasicModal() {
               Client Details
             </Typography>
           </Box>
-          <Box>
+          {/* <Box>
             <ClientsRegistration />
-          </Box>
+          </Box> */}
+          <PDFViewer style={{ width: "500px", height: "500px" }}>
+            <PDF />
+          </PDFViewer>
         </Box>
       </Modal>
     </div>
@@ -119,19 +122,26 @@ const CreateQuestion = () => {
     <div className="flex flex-col">
       <div className=" px-10 w-full flex justify-between">
         <Typography>Create Question</Typography>
-        <PDFDownloadLink
-          // document={<PDFFile question={question} />}
-          document={<PDF />}
-          fileName="FORM"
-        >
-          {({ loading }) =>
-            loading ? (
-              <button>Loading Document...</button>
-            ) : (
-              <button>Download</button>
-            )
-          }
-        </PDFDownloadLink>
+        <div className=" flex">
+          <div>
+            <PDFDownloadLink
+              // document={<PDFFile question={question} />}
+              document={<PDF />}
+              fileName="FORM"
+            >
+              {({ loading }) =>
+                loading ? (
+                  <button>Loading Document...</button>
+                ) : (
+                  <button>Download</button>
+                )
+              }
+            </PDFDownloadLink>
+          </div>
+          <div>
+            <button onClick={() => BasicModal()}>Preview</button>
+          </div>
+        </div>
 
         <div>
           <Button onClick={() => setQuestionType("mcq")}>MCQ</Button>
